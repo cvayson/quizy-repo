@@ -1,5 +1,42 @@
 <div class="wrapper">
-  <div class="category">
-    <button mat-raised-button *ngFor="let category of categories">{{category}}</button>
+  <div class="category"*ngIf="categoryShow">
+    <div class="category-msg">
+      <p>Choose your category</p>
+    </div>
+    <div class="category-btn" >
+      <button mat-raised-button *ngFor="let category of categories" (click)="chooseCategory(category)">{{category}}</button>
+    </div>
+  </div>
+    <div class="difficulty" *ngIf="difficultyShow">
+      <div class="difficulty-msg">
+        <p>Choose your category</p>
+      </div>
+      <div class="difficulty-btn" >
+        <button mat-raised-button *ngFor="let difficulty of difficulties" (click)="chooseDifficulty(difficulty)">{{difficulty}}</button>
+      </div>
+   </div>
+  <div class="start" *ngIf="showStart">
+    <button mat-raised-button (click)="start()">Start</button>
+  </div>
+  <div class="play" *ngIf="showPlay">
+    <div class="question-txt">
+      <p >{{currentQuestion.question}}</p>
+      <div class="answers">
+        <button mat-raised-button *ngFor="let answer of currentQuestion.incorrectAnswers" (click)="guess(answer)">{{answer}} </button>
+        <button mat-raised-button (click)="guess(currentQuestion.correctAnswer)">{{currentQuestion.correctAnswer}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="correct" *ngIf="showCorrect">
+    <p>Your answer is correct</p>
+    <button mat-raised-button (click)="next()">Next </button>
+  </div>
+  <div class="wrong" *ngIf="showWrong">
+    <p>Your answer is wrong. The correct answer is {{currentQuestion.correctAnswer}}</p>
+    <button mat-raised-button (click)="next()">Next </button>
+  </div>
+  <div class="correct" *ngIf="showEnd">
+    <p>{{message}}</p>
+    <button mat-raised-button (click)="start()">Play again </button>
   </div>
 </div>
