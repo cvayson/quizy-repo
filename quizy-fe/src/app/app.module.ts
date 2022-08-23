@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {HomeModule} from "./pages/home/home.module";
-import {MatButton, MatButtonModule} from "@angular/material/button";
+import {MatButtonModule} from "@angular/material/button";
+import {HttpClientModule} from "@angular/common/http";
+import {QuestionModule} from "./pages/question/question.module";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -17,6 +19,9 @@ import {MatButton, MatButtonModule} from "@angular/material/button";
     BrowserAnimationsModule,
     HomeModule,
     MatButtonModule,
+    HttpClientModule,
+    QuestionModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
