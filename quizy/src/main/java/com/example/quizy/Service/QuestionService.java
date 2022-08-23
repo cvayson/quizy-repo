@@ -31,4 +31,31 @@ public class QuestionService {
 
         return questions;
     }
+    public List<QuestionTta> getByDifficulty(String difficulty)
+    {
+        QuestionTta[] temps=getAll();
+        List<QuestionTta> questions=new ArrayList<>();
+
+        for (int i=0;i<temps.length;i++)
+        {
+            if(temps[i].getDifficulty().equals(difficulty)) {
+                questions.add(temps[i]);
+            }
+        }
+        return questions;
+    }
+    public List<QuestionTta> getByDifficultyAndCategory(String difficulty,String category)
+    {
+        QuestionTta[] temps=getAll();
+        List<QuestionTta> questions=new ArrayList<>();
+
+        for (int i=0;i<temps.length;i++)
+        {
+            if(temps[i].getDifficulty().equals(difficulty)&&temps[i].getCategory().equals(category)) {
+                questions.add(temps[i]);
+            }
+        }
+        return questions;
+    }
+
 }

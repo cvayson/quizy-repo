@@ -3,29 +3,43 @@ package com.example.quizy.Controller;
 import com.example.quizy.Model.ModelTta.QuestionTta;
 import com.example.quizy.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import javax.websocket.server.PathParam;
+
 import java.util.List;
 
 
 @RestController
 @RequestMapping("/question")
+
 public class QuestionController {
     @Autowired
     QuestionService service;
-
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/getAll")
     public QuestionTta[] getAll() {
 
         return service.getAll();
     }
 
-    @GetMapping("/getAll/{category}")
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/getByCategory/{category}")
     public List<QuestionTta> getByCategory( @PathVariable String category) {
         return service.getByCategory(category);
     }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("getByDifficulty/{difficulty}")
+    public List<QuestionTta> getByDifficulty(@PathVariable String difficulty)
+    {
+        return service.getByDifficulty(difficulty);
+    }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/getAll/{difficulty}/{category}")
+    public List<QuestionTta>getByDifficultyAndCategory(@PathVariable String difficulty,@PathVariable String category)
+    {
+        return service.getByDifficultyAndCategory(difficulty,category);
+    }
+
 }
