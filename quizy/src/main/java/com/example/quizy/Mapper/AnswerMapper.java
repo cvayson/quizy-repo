@@ -12,7 +12,7 @@ public class AnswerMapper {
         temp.setFirstAnswer(question.getIncorrectAnswers()[0]);
         temp.setSecondAnswer(question.getIncorrectAnswers()[1]);
         temp.setThirdAnswer(question.getIncorrectAnswers()[2]);
-        temp.setFourthAnswer(question.getCorrectAnswer());
+        temp.setCorrectAnswer(question.getCorrectAnswer());
         temp.setQuestionId(question.getId());
 
         return temp;
