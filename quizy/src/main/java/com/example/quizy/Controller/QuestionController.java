@@ -1,6 +1,7 @@
 package com.example.quizy.Controller;
 
 import com.example.quizy.Model.ModelTta.QuestionTta;
+import com.example.quizy.Model.Question;
 import com.example.quizy.Service.QuestionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,5 +42,19 @@ public class QuestionController {
     {
         return service.getByDifficultyAndCategory(difficulty,category);
     }
-
+    @PostMapping("/save")
+    public void save()
+    {
+        service.save();
+    }
+    @GetMapping("/get")
+    public List<Question>get()
+    {
+        return service.get();
+    }
+    @PutMapping("/update")
+    public void setAnswers()
+    {
+         service.setAnswers();
+    }
 }
