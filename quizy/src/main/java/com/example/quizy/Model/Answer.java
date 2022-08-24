@@ -19,6 +19,6 @@ public class Answer {
     private String firstAnswer;
     private String secondAnswer;
     private String thirdAnswer;
-    private String fourthAnswer;
+    private String correctAnswer;
 
 }
