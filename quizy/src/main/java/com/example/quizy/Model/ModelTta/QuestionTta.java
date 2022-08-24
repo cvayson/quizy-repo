@@ -11,4 +11,5 @@ public class QuestionTta {
     private String question;
     private String type;
     private String difficulty;
+
 }
