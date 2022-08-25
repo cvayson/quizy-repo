@@ -8,7 +8,9 @@ import org.springframework.data.repository.NoRepositoryBean;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -20,15 +22,19 @@ public class Quiz {
     private Long id;
     private String difficulty;
     private String category;
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Question> questions=new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name="quiz_question",
+            joinColumns = @JoinColumn(name="quiz_id"),
+            inverseJoinColumns = @JoinColumn(name="question_id")
+    )
+    private Set<Question> questions=new HashSet<>();
 
-    public List<Question>getQuestions()
+    public Set<Question>getQuestions()
     {
         return this.questions;
     }
 
-    public void setQuestions(List<Question> questions) {
+    public void setQuestions(Set<Question> questions) {
         this.questions = questions;
     }
 

@@ -25,7 +25,7 @@ public class QuestionController {
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/getByCategory/{category}")
-    public List<QuestionTta> getByCategory( @PathVariable String category) {
+    public List<Question> getByCategory( @PathVariable String category) {
         return service.getByCategory(category);
     }
 
@@ -37,10 +37,10 @@ public class QuestionController {
     }
 
     @CrossOrigin(origins = "*", allowedHeaders = "*")
-    @GetMapping("/getAll/{difficulty}/{category}")
-    public List<QuestionTta>getByDifficultyAndCategory(@PathVariable String difficulty,@PathVariable String category)
+    @GetMapping("/getAll/{category}/{difficulty}")
+    public List<Question>getByCategoryAndDifficulty(@PathVariable String category,@PathVariable String difficulty)
     {
-        return service.getByDifficultyAndCategory(difficulty,category);
+        return service.getByCategoryAndDifficulty(category,difficulty);
     }
     @PostMapping("/save")
     public void save()

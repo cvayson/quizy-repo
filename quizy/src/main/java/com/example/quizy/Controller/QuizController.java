@@ -5,6 +5,8 @@ import com.example.quizy.Service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/quiz")
 public class QuizController {
@@ -22,8 +24,13 @@ public class QuizController {
         return service.getById(id);
 
     }
+    @GetMapping("/get")
+    public List<Quiz> getAll()
+    {
+        return service.getAll();
+    }
     @PutMapping("/update/{id}")
-    public Quiz setQuestions(@PathVariable Long id)
+    public Quiz setQuestions(@PathVariable Long id)throws Exception
     {
         return service.setQuestions(id);
     }
