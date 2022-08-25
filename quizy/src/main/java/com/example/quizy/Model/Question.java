@@ -1,11 +1,14 @@
 package com.example.quizy.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -27,6 +30,10 @@ public class Question {
             joinColumns = @JoinColumn(name = "question_id"),
             inverseJoinColumns = @JoinColumn(name = "answer_id"))
     private Answer answer;
+    @ManyToMany(mappedBy = "questions")
+    @JsonIgnore
+    private List<Quiz> quizzes=new ArrayList<>();
+
 
     public Question(String id, String category, String question, String type, String difficulty, Answer answer) {
         this.id=id;
@@ -36,7 +43,14 @@ public class Question {
         this.difficulty=difficulty;
         this.answer=answer;
     }
-
+    public List<Quiz> getQuizzes()
+    {
+        return quizzes;
+    }
+    public void setQuizzes(List<Quiz>quizzes)
+    {
+        this.quizzes=quizzes;
+    }
     public Answer getAnswer() {
         return answer;
     }

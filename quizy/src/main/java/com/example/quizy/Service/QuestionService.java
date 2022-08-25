@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,19 +33,10 @@ public class QuestionService {
     {
         return template.getForObject("https://the-trivia-api.com/api/questions?limit=16000",QuestionTta[].class);
     }
-    public List<QuestionTta> getByCategory(String category)
+    public List<Question> getByCategory(String category)
     {
-        QuestionTta[] temps=getAll();
-        List<QuestionTta> questions=new ArrayList<>();
+        return qRepo.findAllByCategory(category);
 
-        for (int i=0;i<temps.length;i++)
-        {
-            if(temps[i].getCategory().equals(category)) {
-                questions.add(temps[i]);
-            }
-        }
-
-        return questions;
     }
     public List<QuestionTta> getByDifficulty(String difficulty)
     {
@@ -59,19 +51,11 @@ public class QuestionService {
         }
         return questions;
     }
-    public List<QuestionTta> getByDifficultyAndCategory(String difficulty,String category)
+    public List<Question> getByCategoryAndDifficulty(String category,String difficulty)
     {
-        QuestionTta[] temps=getAll();
-        List<QuestionTta> questions=new ArrayList<>();
-
-        for (int i=0;i<temps.length;i++)
-        {
-            if(temps[i].getDifficulty().equals(difficulty)&&temps[i].getCategory().equals(category)) {
-                questions.add(temps[i]);
-            }
-        }
-        return questions;
+        return qRepo.findAllByCategoryAndDifficulty(category,difficulty);
     }
+    @Transactional
     public void save()
     {
         QuestionTta[] questionsTtas=getAll();
@@ -88,6 +72,7 @@ public class QuestionService {
         temp=qRepo.findAll();
         return temp;
     }
+    @Transactional
     public void setAnswers()
     {
         List<Question> tempQs=get();
