@@ -1,5 +1,6 @@
 package com.example.quizy.Controller;
 
+import com.example.quizy.Model.Question;
 import com.example.quizy.Model.Quiz;
 import com.example.quizy.Service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;

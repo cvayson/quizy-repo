@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,19 +30,22 @@ public class QuizService {
     @Transactional
     public Quiz save(Quiz response)
     {
+        Quiz temp=new Quiz();
+        temp.setCategory(response.getCategory());
+        temp.setDifficulty(response.getDifficulty());
+
+
         return quizRepo.save(response);
     }
     @Transactional
-    public Quiz setQuestions(Long id)throws Exception
+    public Quiz setQuestions(Long id)
     {
-        Quiz tempQuiz=quizRepo.findById(id).get();
-        String category=tempQuiz.getCategory();
-        String difficulty=tempQuiz.getDifficulty();
-        Set<Question> tempQuestions=new HashSet<>(questionService.getByCategoryAndDifficulty(category,difficulty));
-
-        tempQuiz.setQuestions(tempQuestions);
-        return quizRepo.save(tempQuiz);
-
+        Quiz quiz=quizRepo.findById(id).get();
+        String category=quiz.getCategory();
+        String difficulty=quiz.getDifficulty();
+        List<Question> tempQuestions=new ArrayList<>(questionService.getByCategoryAndDifficulty(category,difficulty));
+        quiz.setQuestions(tempQuestions);
+        return quizRepo.save(quiz);
 
     }
 

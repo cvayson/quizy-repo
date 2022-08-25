@@ -1,21 +1,12 @@
-import {NgModule} from '@angular/core';
-import {CommonModule} from '@angular/common';
-import { QuestionStartComponent } from './question-start/question-start.component';
-import {MatButton, MatButtonModule} from "@angular/material/button";
-import {MatCard, MatCardModule} from "@angular/material/card";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 
 
 @NgModule({
-  declarations: [
-    QuestionStartComponent
-  ],
+  declarations: [],
   imports: [
-    CommonModule,
-    MatButtonModule,
-    MatCardModule
-
-  ],
-
+    CommonModule
+  ]
 })
 export class QuestionModule { }

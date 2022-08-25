@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Question} from "../shared/question.model";
-import {QuestionService} from "../shared/question.service";
+import {Question} from "../shared/quiz.model";
+import {QuizService} from "../shared/quiz.service";
 enum Category
 {
   art="Arts & Literature",
@@ -16,7 +16,7 @@ enum Category
 }
 
 @Component({
-  selector: 'app-question-start',
+  selector: 'app-quiz-start',
   templateUrl: './question-start.component.html',
   styleUrls: ['./question-start.component.css']
 })
@@ -40,7 +40,7 @@ export class QuestionStartComponent implements OnInit {
   questionNumber=0;
   message:String;
 
-  constructor(public service:QuestionService) { }
+  constructor(public service:QuizService) { }
 
   chooseCategory(category:String)
   {

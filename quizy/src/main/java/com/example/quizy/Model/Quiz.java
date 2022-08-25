@@ -27,14 +27,14 @@ public class Quiz {
             joinColumns = @JoinColumn(name="quiz_id"),
             inverseJoinColumns = @JoinColumn(name="question_id")
     )
-    private Set<Question> questions=new HashSet<>();
+    private List<Question> questions=new ArrayList<>();
 
-    public Set<Question>getQuestions()
+    public List<Question>getQuestions()
     {
         return this.questions;
     }
 
-    public void setQuestions(Set<Question> questions) {
+    public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
 
