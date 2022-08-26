@@ -13,25 +13,29 @@ public class QuizController {
     @Autowired
     QuizService service;
 
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @PostMapping("/save")
     public Quiz save(@RequestBody Quiz request)
     {
         return service.save(request);
     }
+
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("get/{id}")
     public Quiz getById(@PathVariable Long id)
     {
         return service.getById(id);
 
     }
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
     @GetMapping("/get")
     public List<Quiz> getAll()
     {
         return service.getAll();
     }
     @PutMapping("/update/{id}")
-    public Quiz setQuestions(@PathVariable Long id)throws Exception
+    public Quiz update(@PathVariable Long id)throws Exception
     {
-        return service.setQuestions(id);
+        return service.update(id);
     }
 }

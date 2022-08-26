@@ -29,10 +29,14 @@ public class QuizService {
     @Transactional
     public Quiz save(Quiz response)
     {
+        Set<Question> tempQuestions=new HashSet<>
+                (questionService.getByCategoryAndDifficulty(response.getCategory(),response.getDifficulty()));
+        response.setQuestions(tempQuestions);
         return quizRepo.save(response);
     }
+   
     @Transactional
-    public Quiz setQuestions(Long id)throws Exception
+    public Quiz update(Long id)throws Exception
     {
         Quiz tempQuiz=quizRepo.findById(id).get();
         String category=tempQuiz.getCategory();
