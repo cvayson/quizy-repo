@@ -22,8 +22,10 @@
     <div class="question-txt">
       <p >{{currentQuestion.question}}</p>
       <div class="answers">
-        <button mat-raised-button *ngFor="let answer of currentQuestion.incorrectAnswers" (click)="guess(answer)">{{answer}} </button>
-        <button mat-raised-button (click)="guess(currentQuestion.correctAnswer)">{{currentQuestion.correctAnswer}}</button>
+        <button mat-raised-button (click)="guess(currentQuestion.answer.firstAnswer)">{{currentQuestion.answer.firstAnswer}} </button>
+        <button mat-raised-button (click)="guess(currentQuestion.answer.secondAnswer)">{{currentQuestion.answer.secondAnswer}} </button>
+        <button mat-raised-button (click)="guess(currentQuestion.answer.thirdAnswer)">{{currentQuestion.answer.thirdAnswer}} </button>
+        <button mat-raised-button (click)="guess(currentQuestion.answer.correctAnswer)">{{currentQuestion.answer.correctAnswer}}</button>
       </div>
     </div>
   </div>
@@ -32,11 +34,10 @@
     <button mat-raised-button (click)="next()">Next </button>
   </div>
   <div class="wrong" *ngIf="showWrong">
-    <p>Your answer is wrong. The correct answer is {{currentQuestion.correctAnswer}}</p>
+    <p>Your answer is wrong. The correct answer is {{currentQuestion.answer.correctAnswer}}</p>
     <button mat-raised-button (click)="next()">Next </button>
   </div>
-  <div class="correct" *ngIf="showEnd">
-    <p>{{message}}</p>
-    <button mat-raised-button (click)="start()">Play again </button>
+  <div *ngIf="showEnd">
+    <button (click)="end()">Play again</button>
   </div>
 </div>

@@ -8,10 +8,14 @@ import {HomeModule} from "./pages/home/home.module";
 import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import {QuestionModule} from "./pages/question/question.module";
+import {QuizModule} from "./pages/quiz/quiz.module"
+import {NgForOf} from "@angular/common";
 
 @NgModule({
   declarations: [
     AppComponent,
+
+
   ],
   imports: [
     BrowserModule,
@@ -20,7 +24,8 @@ import {QuestionModule} from "./pages/question/question.module";
     HomeModule,
     MatButtonModule,
     HttpClientModule,
-    QuestionModule
+    QuestionModule,
+    QuizModule,
 
   ],
   providers: [],

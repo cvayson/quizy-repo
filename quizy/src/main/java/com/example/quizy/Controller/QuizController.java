@@ -1,11 +1,13 @@
 package com.example.quizy.Controller;
 
+import com.example.quizy.Model.Question;
 import com.example.quizy.Model.Quiz;
 import com.example.quizy.Service.QuizService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/quiz")
@@ -37,5 +39,11 @@ public class QuizController {
     public Quiz update(@PathVariable Long id)throws Exception
     {
         return service.update(id);
+    }
+    @CrossOrigin(origins = "*", allowedHeaders = "*")
+    @GetMapping("/getQuestionsFromQuiz/{id}")
+    public Set<Question> getAllQuestionsFromQuiz(@PathVariable Long id)
+    {
+        return service.getAllQuestionsFromQuiz(id);
     }
 }
