@@ -34,9 +34,13 @@ public class QuizService {
         response.setQuestions(tempQuestions);
         return quizRepo.save(response);
     }
-   
+    public Set<Question> getAllQuestionsFromQuiz(Long id)
+    {
+        Quiz temp=quizRepo.findById(id).get();
+        return temp.getQuestions();
+    }
     @Transactional
-    public Quiz update(Long id)throws Exception
+    public Quiz update(Long id)
     {
         Quiz tempQuiz=quizRepo.findById(id).get();
         String category=tempQuiz.getCategory();
